@@ -1,0 +1,7 @@
+spring:
+  mail:
+    username: junk
+    password: junk
+
+controllers:
+  password: junk
