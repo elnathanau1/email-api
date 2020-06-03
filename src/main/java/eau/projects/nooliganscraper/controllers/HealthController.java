@@ -9,6 +9,6 @@ public class HealthController {
     @RequestMapping("/health")
     @ResponseBody
     String health() {
-        return "Hello World";
+        return "Hello World!";
     }
 }
