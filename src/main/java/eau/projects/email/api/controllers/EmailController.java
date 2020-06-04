@@ -1,6 +1,6 @@
-package eau.projects.nooliganscraper.controllers;
+package eau.projects.email.api.controllers;
 
-import eau.projects.nooliganscraper.services.EmailService;
+import eau.projects.email.api.services.EmailService;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
