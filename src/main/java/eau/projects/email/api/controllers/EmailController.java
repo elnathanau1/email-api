@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,24 +22,14 @@ public class EmailController {
     @Value("${controllers.password}")
     private String controllersPassword;
 
-    Logger logger = LoggerFactory.getLogger(EmailController.class);
-
     @PostMapping("/email")
-    String sendEmail(@RequestBody EmailRequest emailRequest, @RequestHeader String authorization) {
-        try {
-            if (authorization.equals(controllersPassword)) {
-                logger.info("{}, {}, {}", emailRequest.getTo(), emailRequest.getSubject(), emailRequest.getMessage());
-                emailService.sendSimpleMessage(emailRequest.getTo(), emailRequest.getSubject(), emailRequest.getMessage());
-                return "Success";
-            }
-            else {
-                return "Unauthorized";
-            }
-
-        } catch (Exception e) {
-            return "Error: " + e.getMessage();
+    public ResponseEntity sendEmail(@RequestBody EmailRequest emailRequest, @RequestHeader String authorization) {
+        if (authorization.equals(controllersPassword)) {
+            emailService.sendSimpleMessage(emailRequest.getTo(), emailRequest.getSubject(), emailRequest.getMessage());
+            return new ResponseEntity(HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
-
     }
 }
 
