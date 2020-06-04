@@ -1,4 +1,4 @@
-package eau.projects.nooliganscraper.controllers;
+package eau.projects.email.api.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

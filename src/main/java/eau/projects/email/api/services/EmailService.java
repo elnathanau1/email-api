@@ -1,4 +1,4 @@
-package eau.projects.nooliganscraper.services;
+package eau.projects.email.api.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
